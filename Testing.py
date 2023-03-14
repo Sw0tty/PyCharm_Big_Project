@@ -1,7 +1,19 @@
 import random
 import time
 
-hello_text = "Hello"
+
+def positive(x):
+    return x % 2 == 0
+
+
+result = filter(positive, [-2, -1, 0, 1, -3, 2, -3])
+
+print(list(result))
+
+
+L_str = ['THIS', 'IS', 'LOWER', 'STRING']
+print(list(map(str.lower, L_str)))
+
 L = [1, 3, 5, -3, 4, -4, 0]
 
 def min_list(L):

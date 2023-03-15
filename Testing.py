@@ -1,6 +1,30 @@
 import random
 import time
 
+a = ["asd", "bbd", "ddfa", "mcsa"]
+print(list(map(str.upper, a)))
+print(list(x.upper() for x in a))
+print(list(map(lambda x: x.upper(), a)))
+
+# (вес, рост)
+data = [
+   (82, 1.91),
+   (68, 1.74),
+   (90, 1.89),
+   (73, 1.79),
+   (76, 1.84)
+]
+print(sorted(data, key=lambda x: x[0]/x[1]**2))
+print(min(data, key=lambda x: x[0]/x[1]**2))
+
+d = {2 : "c", 1 : "d", 4 : "a", 3 : "b"}
+
+# Чтобы отсортировать его по ключам, нужно сделать так
+print(dict(sorted(d.items())))
+
+print(dict(sorted(d.items(), key=lambda x: x[1])))
+
+print(list(map(lambda x: x**2, range(1, 11))))
 
 def positive(x):
     return x % 2 == 0

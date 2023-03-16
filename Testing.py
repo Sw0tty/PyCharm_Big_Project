@@ -1,6 +1,93 @@
 import random
 import time
 
+
+#-----------111----------------
+# декоратор
+# Первый способ
+# def my_decor(func):
+#     def wrapper():
+#         print("start")
+#         func()
+#         print("end")
+#     return wrapper
+# def my_func():
+#     print("тут основная функция")
+#
+# my = my_decor(my_func)
+# my()
+
+
+# Второй способ
+def my_decor(func):
+    def wrapper():
+        print("start")
+        func()
+        print("end")
+    return wrapper
+@my_decor
+def my_func():
+    print("тут основная функция")
+my_func()
+
+
+# yield
+def cube_numbers(nums):
+    cube_list = []
+    for i in nums:
+        cube_list.append(i**3)
+    return cube_list
+
+print(cube_numbers([1, 2, 3, 4, 5]))
+
+def cube_numbers(nums):
+    for i in nums:
+        yield (i**3)
+
+print(list(cube_numbers([1, 2, 3, 4, 5])))
+
+generator = (i ** 2 for i in range(10))  # в генераторе можно использовать функцию next()
+# генератор - итераторб элементы которого можно итерировать только один раз
+# итератор - это объект, который поддерживает функцию next(). Помнит о том, какой элемент будет браться следующим
+# итерируемы объект - это объект, который предоставляет возможность обойти поочередно свои элементы
+print("First")
+for i in generator:
+    print(i)
+print("Second")
+for i in generator:
+    print(i)
+
+a = [i ** 2 for i in range(10)]
+print(a)
+
+#iter()
+s = [1, 2, 3]
+d = iter(s)
+print(next(d))
+
+a = ['2', '5', '5']
+
+a_mod = [int(i) for i in a]
+print(a_mod)
+def check(n):
+    if n < 2:
+        return (n % 2 == 0)
+    return check(n - 2)
+
+n = int(input("число "))
+if check(n) == True:
+    print("Число четное")
+else:
+    print("нечетное")
+
+def rec(x):
+    if x < 4:
+        print(x)
+        rec(x + 1)
+        print(x)
+rec(1)
+#------------111---------------
+
 a = ["asd", "bbd", "ddfa", "mcsa"]
 print(list(map(str.upper, a)))
 print(list(x.upper() for x in a))

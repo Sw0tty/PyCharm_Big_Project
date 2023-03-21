@@ -1,6 +1,77 @@
 import random
 import time
 
+def new_func(inside_func):
+    inside_func()
+
+
+def hello():
+    print("Hello")
+
+
+new_func(hello)
+
+def decorator_time(fn):
+   def wrapper():
+       print(f"Запустилась функция {fn}")
+       t0 = time.time()
+       dt = time.time() - t0
+       print(f"Функция выполнилась. Время: {dt:.10f}")
+       return dt  # задекорированная функция будет возвращать время работы
+   return wrapper
+
+
+def pow_2():
+   return 10000000 ** 2
+
+
+def in_build_pow():
+   return pow(10000000, 2)
+
+
+pow_2 = decorator_time(pow_2)
+in_build_pow = decorator_time(in_build_pow)
+
+pow_2()
+# Запустилась функция <function pow_2 at 0x7f938401b158>
+# Функция выполнилась. Время: 0.0000011921
+
+in_build_pow()
+# Запустилась функция <function in_build_pow at 0x7f938401b620>
+# Функция выполнилась. Время: 0.0000021458
+print()
+# def my_decorator(a_function_to_decorate):
+#     def wrapper():
+#         print("Я буду выполнен до основного вызова!")
+#
+#         result = a_function_to_decorate()
+#
+#         print("Я буду выполнен после основного вызова!")
+#         return result
+#
+#     return wrapper
+#
+# def my_function():
+#    print("Я - оборачиваемая функция!")
+#    return "конец my_function"
+
+
+# decorated_function = my_decorator(my_function)
+# print(decorated_function())
+
+
+
+def make_adder(x):
+   def adder(n):
+       return x + n # захват переменной "x" из nonlocal области
+   return adder
+
+add_5 = make_adder(5)
+print(type(add_5))
+print(add_5(100))
+
+
+
 
 #-----------Вебинар по функция----------------
 # декоратор
@@ -47,7 +118,7 @@ def cube_numbers(nums):
 print(list(cube_numbers([1, 2, 3, 4, 5])))
 
 generator = (i ** 2 for i in range(10))  # в генераторе можно использовать функцию next()
-# генератор - итераторб элементы которого можно итерировать только один раз
+# генератор - итератор элементы которого можно итерировать только один раз
 # итератор - это объект, который поддерживает функцию next(). Помнит о том, какой элемент будет браться следующим
 # итерируемы объект - это объект, который предоставляет возможность обойти поочередно свои элементы
 print("First")
@@ -875,8 +946,6 @@ num = 1234321
 
 print(str(num) == str(num)[::-1])
 
-
-
 user_database = {
     'user': 'password',
     'iseedeadpeople': 'greedisgood',
@@ -961,9 +1030,6 @@ def leap_year(x):
 print(leap_year(x=2700))
 
 
-
-
-
 my_num = input("Введите число от 0 до 10: ")
 str_numbers_lib = {'0': 'Ноль', '1': 'Один', '2': 'Два', '3': 'Три', '4': 'Четыре', '5': 'Пять', '6': 'Шесть'}
 your_num = str_numbers_lib[my_num]
@@ -1006,33 +1072,6 @@ print(proc_ushed, "% ушли")
 print(users[0][::2])
 
 print("\n")
-
-response = {'response': [{'id': 42565717,
-                          'name': 'Python',
-                          'screen_name': 'club42565717',
-                          'is_closed': 0,
-                          'type': 'group',
-                          'members_count': 37319,
-                          'activity': 'Открытая группа',
-                          'photo_50': 'https://sun9-127.userapi.com/c845524/v845524906/1a71c2/A2r_4JtmiLQ.jpg?ava=1',
-                          'photo_100': 'https://sun9-58.userapi.com/c845524/v845524906/1a71c1/2fBtsS0k8XY.jpg?ava=1',
-                          'photo_200': 'https://sun9-50.userapi.com/c845524/v845524906/1a71c0/Kfo-eQIn0DU.jpg?ava=1'},
-
-                         {'id': 3183750,
-                          'name': 'Веб программист - PHP, JS, Python, Java, HTML 5',
-                          'screen_name': 'php2all',
-                          'is_closed': 0,
-                          'type': 'page',
-                          'members_count': 117833,
-                          'activity': 'Программирование',
-                          'photo_50': 'https://sun9-54.userapi.com/c626421/v626421613/941/HSj4ylRsk8k.jpg?ava=1',
-                          'photo_100': 'https://sun9-5.userapi.com/c626421/v626421613/940/yKaZLxGShkY.jpg?ava=1',
-                          'photo_200': 'https://sun9-49.userapi.com/c626421/v626421613/93f/2EygT_FJKWg.jpg?ava=1'}]}
-
-photo_py = list(response['response'][0].values())
-photo_proger = list(response['response'][1].values())
-photos = [list(reversed(photo_py[-1:-4:-1])), list(reversed(photo_proger[-1:-4:-1]))]
-print(photos)
 
 config = {
     'server': {
@@ -1285,59 +1324,3 @@ testword = "р"
 print(testword.isdigit())
 print(testword.isalpha())
 print(testword.isalnum())
-
-word = "Да Нет"
-print(word.find("Нет"))
-print(word[3:5])
-print(word[:4:2])
-print(word[-1])
-print(word[::-1])
-print(word[:-2])
-print(len(word))
-print(word.find("Н"))
-
-
-def now_month(month): (  #
-    print("Current month is", month)  # пример создания функции
-)  #
-
-
-word = "Да Нет"
-print(word[1])
-
-print("d" in "world")  # проверит наличие буквы “d” в слове “world” и выведет “правду или ложь”
-
-pi = 3.14159
-
-print(round((pow(pi, 2)) / 2))
-print(round((11 * 2.5 / 3), 2))
-
-a = 13
-b = 7
-a = a - b
-b = a + b
-# a = b - a
-print("a=", a, "b=", b)
-
-print(1.57 * 3 / 1.5 == 3.14)
-
-first_name = input("Введите ваше имя:")
-last_name = input("Введите вашу фамилию:")
-age = input("Введите ваш возраст:")
-city = input("Введите город проживания:")
-
-# Выводим пустую строку
-print("")
-
-# Выводим приветствие, подставляя имя и фамилию пользователя, которые он ввёл с клавиатуры
-print("Привет,", first_name, last_name, "!")
-
-# Выводим пустую строку
-print("")
-
-# Выводим фиксированный текст для удобства просмотра
-print("Ваш профиль:")
-
-# Выводим возраст и город, которые указал пользователь
-print("Возраст:", age, "лет")
-print("Город:", city)

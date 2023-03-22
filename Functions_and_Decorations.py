@@ -2,6 +2,25 @@ import random
 import time
 
 
+# -------Простейший декоратор---------
+def my_decorator(decoration_func):
+    def wrapper():
+        print("Начало обертки")
+        decoration_func()
+        print("Конец обертки")
+    return wrapper
+
+
+def my_func():
+    print("--Я в обертке--")
+
+
+func = my_decorator(my_func)
+
+func()
+# -----------------------
+
+
 # ------Мы можем хранить функции в переменных------
 def hello_world_1():  # 3
     print("Hello world")  # 4

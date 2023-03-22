@@ -1,6 +1,17 @@
 import random
 import time
 
+
+def create_phone_number(n):
+    return f"""({"".join(n[0:3])}) {n[3:6]}-{n[6:]}"""
+
+def create_phone_number2(n):
+	return "({}{}{}) {}{}{}-{}{}{}{}".format(*n)
+
+a = [1,3,41,56 ,74, 23]
+print(*a)
+
+
 def new_func(inside_func):
     inside_func()
 
@@ -71,37 +82,7 @@ print(type(add_5))
 print(add_5(100))
 
 
-
-
 #-----------Вебинар по функция----------------
-# декоратор
-# Первый способ
-# def my_decor(func):
-#     def wrapper():
-#         print("start")
-#         func()
-#         print("end")
-#     return wrapper
-# def my_func():
-#     print("тут основная функция")
-#
-# my = my_decor(my_func)
-# my()
-
-
-# Второй способ
-def my_decor(func):
-    def wrapper():
-        print("start")
-        func()
-        print("end")
-    return wrapper
-@my_decor
-def my_func():
-    print("тут основная функция")
-my_func()
-
-
 # yield
 def cube_numbers(nums):
     cube_list = []

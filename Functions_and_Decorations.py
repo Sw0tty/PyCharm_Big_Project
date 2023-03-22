@@ -1,24 +1,118 @@
 import random
 import time
+def my_decor(func):
+    def wrapper(n):
+        print("Start decor")
+        func(n)
+        print("End decor")
+    return wrapper
+
+@my_decor
+def my_func(number):
+    print(number ** 2)
+my_func(10)
+
+
+# -----------Передача аргументов-------------
+def decorator_passing_arguments(function_to_decorate):
+    def a_wrapper_accepting_arguments(arg1, arg2):  # аргументы прибывают отсюда
+        print("Смотри, что я получил:", arg1, arg2)
+        function_to_decorate(arg1, arg2)  # arg1 -> first_name | arg2 -> last_name
+    return a_wrapper_accepting_arguments
+
+
+# Теперь, когда мы вызываем функцию, которую возвращает декоратор,
+# мы вызываем её "обёртку", передаём ей аргументы и уже в свою очередь
+# она передаёт их декорируемой функции
+
+
+@decorator_passing_arguments  # == decorator_passing_arguments = function_to_decorate(print_full_name)
+def print_full_name(first_name, last_name):
+    print("Меня зовут", first_name, last_name)
+
+
+print_full_name(arg1="Питер", arg2="Питерсон")
+# ------------------------
 
 
 # -------Простейший декоратор---------
-def my_decorator(decoration_func):
+def my_decorator(decoration_func):  # 3
+    def wrapper():  # 5
+        print("Начало обертки")  # 6
+        decoration_func()  # 7
+        print("Конец обертки")  # 10
+    return wrapper  # 4
+
+
+def my_func():  # 8
+    print("--Я в обертке--")  # 9
+
+
+func = my_decorator(my_func)  # 1
+
+func()  # 2
+# -----------------------
+print()
+
+
+# -------Простейший декоратор с синтаксическим сахаром---------
+def my_another_decorator(decoration_func):
     def wrapper():
-        print("Начало обертки")
+        print("Начало еще одной обертки обертки")
         decoration_func()
-        print("Конец обертки")
+        print("Конец еще одной обертки обертки")
     return wrapper
 
 
-def my_func():
-    print("--Я в обертке--")
+@my_another_decorator  # == func = my_another_decorator(my_function_for_decor)
+def my_function_for_decor():
+    print("--Я тоже буду в обертке--")
 
 
-func = my_decorator(my_func)
-
-func()
+my_function_for_decor()
 # -----------------------
+print()
+
+
+# -------Декоратор в декораторе---------
+def first_decorator(decoration_func):
+    def wrapper():
+        print("Я первая, но буду снаружи")
+        decoration_func()
+        print("Я первая, но буду снаружи")
+    return wrapper
+
+
+def second_decorator(decoration_func):
+    def wrapper():
+        print("Я вторая, но буду в центре")
+        decoration_func()
+        print("Я вторая, но буду в центре")
+    return wrapper
+
+
+@first_decorator
+@second_decorator
+def my_function_for_double_decor():
+    print("--Я буду в центре двух оберток--")
+
+
+my_function_for_double_decor()
+# -----------------------
+print()
+
+
+# -----------------------
+def scream():
+    print("ДА!")
+
+
+def do_something_before(func):
+    print("Я делаю что-то ещё, перед тем как вызвать функцию, которую ты мне передал")
+    print(func())
+
+
+do_something_before(scream)
 
 
 # ------Мы можем хранить функции в переменных------
@@ -58,7 +152,6 @@ print(higher_order(hello_world))  # 1
 # -----------
 
 
-
 # -----------Вебинар по функция----------------
 # ---------------декоратор------------
 
@@ -83,8 +176,12 @@ def my_decor(func):
         func()
         print("end")
     return wrapper
+
+
 @my_decor
 def my_func():
     print("тут основная функция")
+
+
 my_func()
 # -----------------------------

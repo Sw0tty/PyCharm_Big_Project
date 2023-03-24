@@ -1,6 +1,8 @@
 import random
 import time
 
+print(isinstance(13, str))
+
 
 def create_phone_number(n):
     return f"""({"".join(n[0:3])}) {n[3:6]}-{n[6:]}"""

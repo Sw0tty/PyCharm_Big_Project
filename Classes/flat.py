@@ -24,7 +24,7 @@ f.get_room()
 
 print()
 
-class Room1:
+class Room11:
     def get_room(self):
         print('room1')
 
@@ -42,7 +42,7 @@ class Kitchen:
         print('kitchen')
 
 
-class Flat(Kitchen, Room1, Room2):
+class Flat(Kitchen, Room11, Room2):
     pass
 
 
@@ -51,5 +51,5 @@ my_flat.get_kitchen()
 my_flat.get_room()
 my_flat.get_room2()
 print(isinstance(my_flat, Flat))
-print(isinstance(my_flat, Room1))
+print(isinstance(my_flat, Room11))
 print(isinstance(my_flat, Room2))

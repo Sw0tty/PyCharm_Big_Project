@@ -2,8 +2,8 @@
 import pygame  # Предварительно установить: pip install pygame
 import random
 
-WIDTH = 360  # Ширина окна
-HEIGHT = 180  # Высота окна
+WIDTH = 920  # Ширина окна
+HEIGHT = 680  # Высота окна
 FPS = 30  # Частота обновления кадров
 
 # Цвета для использования в программе (R, G, B)
@@ -34,6 +34,7 @@ while running:
     for event in pygame.event.get():  # проверка закрытия окна
         if event.type == pygame.QUIT:
             running = False
+
     # -----------------------
 
     # Визуализация (сборка)

@@ -1,5 +1,7 @@
 import random
 import time
+
+
 def my_decor(func):
     def wrapper(n):
         print("Start decor")

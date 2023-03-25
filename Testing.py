@@ -14,7 +14,7 @@ def create_phone_number2(n):
     return "({}{}{}) {}{}{}-{}{}{}{}".format(*n)
 
 
-a = [1,3,41,56 ,74, 23]
+a = [1, 3, 41, 56, 74, 23]
 print(*a)
 
 

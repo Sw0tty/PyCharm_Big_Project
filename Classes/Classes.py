@@ -1,6 +1,21 @@
 import datetime
 
 
+class Lime:
+    def __init__(self, lem):
+        self.lem = lem
+
+    def add_lem(self):
+        if self.lem:
+            return "Чай с лемоном"
+        else:
+            return "Чай без лемона"
+
+
+tea = Lime("")
+print(tea.add_lem())
+
+
 # ----------Наследование класса-----------
 class Product:
     max_quantity = 100000

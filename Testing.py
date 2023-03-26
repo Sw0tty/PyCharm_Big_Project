@@ -207,18 +207,18 @@ print(D(3, 4, 2))
 text = "aaabbccccdaa"  # получаем строку
 
 last = text[0]  # сохраняем первый символ
-count = 0  # заводим счётчик
+player_rect_reaction = 0  # заводим счётчик
 result = ''  # и результирующую строку
 
 for c in text:
     if c == last:  # если символ совпадает с сохранённым,
-        count += 1  # то увеличиваем счётчик
+        player_rect_reaction += 1  # то увеличиваем счётчик
     else:
-        result += last + str(count)  # иначе записываем в результат
+        result += last + str(player_rect_reaction)  # иначе записываем в результат
         last = c  # и обновляем сохранённый символ с его счётчиком
-        count = 1
+        player_rect_reaction = 1
 
-result += last + str(count)  # и добавляем в результат последний символ
+result += last + str(player_rect_reaction)  # и добавляем в результат последний символ
 print(result)
 
 # —------Генераторы--------—

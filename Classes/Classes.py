@@ -1,6 +1,131 @@
 import datetime
 
 
+class Animal:
+    def __init__(self, color: str) -> None:  # color: str - всего лишь подсказка для нужного типа данных
+        self.color: str = color
+
+    def roar(self):
+        return "ARARAR"
+
+    def roar_test(self):  # Тест полиморфизма
+        return "I'm Animal"
+
+    def roar_test_2(self, type_=None):  # Тест полиморфизма методом перегрузки
+        if type_:
+            return "It's just another!"
+        return "I'm Animal"
+
+
+class Cats(Animal):
+    def meow(self):
+        return "Meow"
+
+    def roar_test(self):  # Тест полиморфизма
+        return "I'm Cats"
+
+
+a = Animal("red")
+b = Cats("red")
+
+print(a.color)
+print(a.roar())
+
+print(b.color)
+print(b.roar())
+print(b.meow())
+print(a.roar_test())
+print(b.roar_test())
+print(a.roar_test_2(type_="Car"))  # Тест полиморфизма методом перегрузки
+print("\n")
+p = [1, 2, 3, 4]
+print(p.index(3))
+
+class ParentClass:
+
+    @classmethod
+    def method(cls, arg):
+        print("%s classmethod. %d" % (cls.__name__, arg))
+
+    @classmethod
+    def call_original_method(cls):
+        cls.method(5)
+
+    def call_class_method(self):
+        self.method(10)
+
+
+class ChildClass(ParentClass):
+
+    @classmethod
+    def call_original_method(cls):
+        cls.method(6)
+
+
+ParentClass.method(555)
+ParentClass.call_original_method()
+
+ChildClass.method(0)
+ChildClass.call_original_method()
+
+
+class Dog:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    # создадим свойство human_age, которое будет переводить возраст животного в человеческий
+    @property  # тот самый магический декоратор
+    def human_age(self):
+        return self.age * 7.3
+
+    # добавим новое поле — шкала счастья
+    @property
+    def happiness(self):
+        return self.dog_happiness
+
+    @happiness.setter
+    # допустим, мы хотим, чтобы счастье питомца измерялось шкалой от 0 до 100
+    def happiness(self, dog_happiness):
+        if dog_happiness <= 100 and dog_happiness >= 0:
+            self.dog_happiness = dog_happiness
+        else:
+            raise ValueError("Happiness must be between 0 ... 100")
+
+
+jane = Dog("jane", 4)
+jane.dog_happiness = 50
+print(jane.name, jane.age)
+print(jane.human_age)
+print(jane.happiness)
+
+
+class Squre:
+    def __init__(self, side):
+        self.side = side
+
+
+class SquareFactory:
+    @staticmethod
+    def side(side):
+        return Squre(side)
+
+
+squre_side = SquareFactory.side(5)
+print(squre_side.side)
+
+
+class StaticClass:
+    @staticmethod  # помечаем метод, который мы хотим сделать статичным декоратором @staticmethod
+    def bar():
+        print("bar")
+
+
+StaticClass.bar()
+
+
+
+
 class Lime:
     def __init__(self, lem):
         self.lem = lem

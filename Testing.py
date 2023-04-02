@@ -1,6 +1,31 @@
 import random
 import time
+import ctypes
 
+try:  # Добавляем конструкцию try-except для отлова нашей ошибки
+    print("Перед исключением")
+    # теперь пользователь сам вводит числа для деления
+    a = 4
+    b = 0
+    c = a / b  # здесь может возникнуть исключение деления на ноль
+    print(c)  # печатаем c = a / b если всё хорошо
+# except ZeroDivisionError as error:
+#     print(error)
+except ZeroDivisionError:  # Добавляем тип именно той ошибки которую хотим отловить.
+    print("!!!Деление на ноль!!!")  # Выводим информацию об ошибке
+else:  # код в блоке else выполняется только в том случае, если код в блоке try выполнился успешно (т.е. не вылетело никакого исключения)
+    print("Всё ништяк")
+finally:  # код в блоке finally выполнится в любом случае при выходе из try-except
+    print("Finally на месте")
+
+print("После После исключения")
+
+
+user32 = ctypes.windll.user32
+W = ctypes.windll.user32.GetSystemMetrics(0)
+screensize = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
+
+print(W)
 stroka = "    fgfg f gdf g     "
 print(stroka.lstrip() + "tttttt")
 stroka = "H"

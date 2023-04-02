@@ -4,15 +4,18 @@
 
 import pygame  # Предварительно установить: pip install pygame
 import random
-import os
+import os  # Для взаимодействия с системными файлами
+import ctypes
 
 # ----------Настройка папки ассетов-----------
 project_folder = os.path.dirname(__file__)  # Сокращенная запись для указания папки с проектом
 images_folder = os.path.join(project_folder, 'img')  # Соединение пути и папки в проекте
 # ----------------------------
 
-WIDTH = 920  # Ширина окна
-HEIGHT = 680  # Высота окна
+FULL_WIDTH = ctypes.windll.user32.GetSystemMetrics(0)  # Полная ширина экрана пользователя
+FULL_HEIGHT = ctypes.windll.user32.GetSystemMetrics(1)  # Полная высота экрана пользователя
+WIDTH = FULL_WIDTH / 2  # Ширина окна по умолчанию
+HEIGHT = FULL_HEIGHT / 2  # Высота окна по умолчанию
 FPS = 30  # Частота обновления кадров
 
 # -----Библиотека цветов----- (R, G, B)
@@ -78,8 +81,8 @@ while running:
     # --------------------------------------
 
     # ---------Обработчик событий-----------
-    for event in pygame.event.get():  # Цикл всех событий
-        if event.type == pygame.QUIT:  # Проверка закрытия окна
+    for game_event in pygame.event.get():  # Цикл всех событий
+        if game_event.type == pygame.QUIT:  # Проверка закрытия окна
             running = False
     # --------------------------------------
 

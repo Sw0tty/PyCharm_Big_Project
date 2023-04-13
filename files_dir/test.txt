@@ -1,0 +1,7 @@
+Просто для теста input запиши все что сказаноThis is a test string
+This is a new string
+А это на русском языке
+other string
+123
+test test
+other string123test test

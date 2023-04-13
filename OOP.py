@@ -13,6 +13,7 @@ class Event:
         self.type = event_dict.get("type")
         self.session_id = event_dict.get("session_id")
 
+
 events = [
     {
      "timestamp": 1554583508000,
@@ -94,3 +95,26 @@ class User2:
 
 lancelot = User2()
 print(lancelot.number_of_eyes)
+
+
+staples = {')': '(', ']': '['}
+
+def par_checker(string):
+    stack = []
+
+    for i in string:
+        if i in staples.values():
+            stack.append(i)
+            print(stack)
+        elif i in staples.keys():
+            if len(stack) > 0 and stack[-1] == staples[i]:
+                stack.pop()
+                print(stack)
+            else:
+                return False
+    return len(stack) == 0  # Если наш стэк окажется пустым, то получим True, так как все скобочки закрылись
+
+
+if __name__ == '__main__':
+    print()
+    print(par_checker("(5+6)*(7[+8)/())(4+3)"))

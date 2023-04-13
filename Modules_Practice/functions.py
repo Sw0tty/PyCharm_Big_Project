@@ -12,6 +12,14 @@ def rectangle_area(a: float, b: float) -> float:
     return a * b
 
 
+def rec(n):
+    if n == 0:
+        return
+    else:
+        rec(n-1)
+        print(n)
+
 if __name__ == '__main__':  # проверяем работоспособность функции, дальнейшая часть не будет импортирована
     assert circle_area(5) == 78.5  # если ответы будут отличаться, то будет вызвана ошибка
     assert rectangle_area(5, 4) == 20
+    rec(5)

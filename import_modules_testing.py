@@ -10,7 +10,7 @@ print(dir(math))
 
 print(math.trunc(math.fmod(math.fabs(-10000000), 55)+0.3))
 
-named_tuple = time.localtime() # получить struct_time
+named_tuple = time.localtime()  # получить struct_time
 time_string = time.strftime("%H:%M:%S", named_tuple)
 date_string = time.strftime("%d-%m-%Y", named_tuple)
 minutes_string = time.strftime("%M", named_tuple)

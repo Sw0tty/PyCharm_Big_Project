@@ -187,58 +187,6 @@ def task_vebinar():
         for j in i:
             print(f"{j[0].title()}: {j[1]} {j[2]}", end=" ")
         print()
-
-    # string1 = []
-    # string2 = []
-    #
-    # for i in cook_book:
-    #     for j in cook_book[i]:
-    #         main_rec = [j['ingredient_name'], j['measure']]
-    #         print(main_rec)
-    #         for k in cook_book[i]:
-    #             main_rec2 = [k['ingredient_name'], k['measure']]
-    #             if main_rec == main_rec2:
-    #                 check += 1
-    #             print(main_rec2)
-    #         print(check)
-    #         check = 0
-    #         print(main_rec)
-    # print('\n' * 5)
-    # for k in j.values():
-    #     string2.append(k)
-    #     #print(k)
-    #     for m in j.values():
-    #         string1.append(m)
-    #     print(string1)
-    #     print(string2)
-    #     new_recept.append(string1)
-    #     string1 = []
-    # final_recept.append(string2)
-    # string2 = []
-    # print(new_recept)
-    # print(len(final_recept))
-
-
-    # for i in new_recept:
-    #     for j in new_recept:
-    #         if j[0] == i[0] and j[2] == i[2]:
-    #             check += 1
-    #             check2 += j[1]
-    #     if check < 2:
-    #         i[1] = i[1] * portion
-    #         final_recept.append(i)
-    #     else:
-    #         ppp = [i[0], check2, i[2]]
-    #         ppp[1] = ppp[1] * portion
-    #         if ppp not in final_recept:
-    #             final_recept.append(ppp)
-    #     check2 = 0
-    #     check = 0
-    # for i in final_recept:
-    #     for j in i:
-    #         print(j, end=" ")
-    #     print()
-
     print("------------------------")
     return ""
 

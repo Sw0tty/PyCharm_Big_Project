@@ -2,6 +2,25 @@ import random
 import time
 
 
+def removeDuplicates(nums):
+    for i in nums:
+        if nums.count(i) > 1 and i != '_':
+            for j in range(nums.count(i) - 1):
+                nums.remove(i)
+                nums.append('_')
+    k = len(nums) - nums.count('_')
+    return k, nums
+
+
+# print(removeDuplicates([2, 2, 2, 2, 2]))
+
+def reverse_number(x):
+    return int(str(x)[::-1]) if '-' not in str(x) else int('-' + (str(x)[:-len(str(x)):-1]))
+
+
+print(reverse_number(-824243))
+
+
 def my_decor(func):
     def wrapper(n):
         print("Start decor")

@@ -1,25 +1,45 @@
 import random
 import time
 import ctypes
+SKID = 0.1
 
-try:  # Добавляем конструкцию try-except для отлова нашей ошибки
-    print("Перед исключением")
-    # теперь пользователь сам вводит числа для деления
-    a = 4
-    b = 0
-    c = a / b  # здесь может возникнуть исключение деления на ноль
-    print(c)  # печатаем c = a / b если всё хорошо
-# except ZeroDivisionError as error:
-#     print(error)
-except ZeroDivisionError:  # Добавляем тип именно той ошибки которую хотим отловить.
-    print("!!!Деление на ноль!!!")  # Выводим информацию об ошибке
-else:  # код в блоке else выполняется только в том случае, если код в блоке try выполнился успешно (т.е. не вылетело никакого исключения)
-    print("Всё ништяк")
-finally:  # код в блоке finally выполнится в любом случае при выходе из try-except
-    print("Finally на месте")
+print("Нью-Йорк" > "Бостон")
 
-print("После После исключения")
+str_ = ""
+for i in range(70, 75):
+    str_ += chr(i)
+print(str_)
 
+count = 0
+for i in "Mary":
+    count += ord(i)
+print(count)
+
+if "Mary" > "Mark":
+    print("Строка 'Mary' больше")
+else:
+    print("Строка 'Mark' больше")
+
+
+print("a" < "b")
+
+number = 1234567.456
+print(f"{number:,.1f}")
+val = 45
+print(val - (val * SKID))
+
+data = [13, 25, 13, 34]
+sum_ = 0
+for i, el in enumerate(data):
+    print(f"{i} = {el}")
+print(sum_)
+
+print(input("Что вывести? "))
+print(type(input()))
+graph = {0: [1, 2, 3],
+         1: [0, 2],
+         2: [0, 1],
+         3: [0]}
 
 user32 = ctypes.windll.user32
 W = ctypes.windll.user32.GetSystemMetrics(0)
@@ -38,6 +58,7 @@ def create_phone_number(n):
 def create_phone_number2(n):
     return "({}{}{}) {}{}{}-{}{}{}{}".format(*n)
 
+print(create_phone_number2("2231143141"))
 
 a = [1, 3, 41, 56, 74, 23]
 print(*a)

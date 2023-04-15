@@ -3,7 +3,9 @@ import turtle
 
 while True:
     turtle.showturtle()
-    command = input()
-    if command == "forward":
-        turtle.forward(200)
+    turtle.pencolor('red')
+
+    # command = input()
+    # if command == "forward":
+    #     turtle.forward(200)
 

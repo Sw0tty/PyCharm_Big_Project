@@ -17,7 +17,7 @@ def sum_rec(lst):
     if not lst:
         return 0
     elif len(lst) == 1:
-        return 1
+        return lst[0]
     else:
         return lst[-1] + sum_rec(lst[:-1])
 
@@ -34,5 +34,5 @@ def str_rec(my_str):
 if __name__ == '__main__':
     print(rec(5), '\n')
     print(factorial(3), '\n')
-    print(sum_rec([1, 4, 6, 4]))
+    print(sum_rec([1, 4, 6, 4]), "сумма")
     print(str_rec('shark'))

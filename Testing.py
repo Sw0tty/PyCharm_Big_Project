@@ -1,7 +1,129 @@
+import math
 import random
 import time
 import ctypes
+import math
+from math import pi as PI
+
+
+def sum_numbers(first_number, second_number):
+    return first_number + second_number
+
+
+again = "д"
+while again.lower() == "д":
+    first_number = random.randint(0, 1000)
+    second_number = random.randint(0, 1000)
+    print(f"Сколько будет:\n{first_number} + {second_number}?")
+    answer = int(input("Ваш ответ: "))
+    if answer == sum_numbers(first_number, second_number):
+        print("Верно!")
+    else:
+        print(f"Ошибка! Правильный ответ: {sum_numbers(first_number, second_number)}")
+    again = input("Еще пример? д = да")
+
+
+def is_invalid(mod_num):
+    if mod_num != 100 and mod_num != 200 and mod_num != 300:
+        return True
+    else:
+        return False
+
+model = int(input("Модель"))
+while is_invalid(model):
+    model = int(input("Модель"))
+
+def is_even(number):
+    if number % 2 == 0:
+        return True
+    else:
+        return False
+
+number = int(input("Число на проверку "))
+if is_even(number):
+    print("Число четное")
+else:
+    print("Число не четное")
+
+print(random.uniform(0.1, 0.5))
+print(random.choices(['f', 'g', 6, 'hello'], k=4))
+print(random.choice(('f', 'g', 6, 'hello')))
+HEAD = 1
+TAIL = 2
+TOSSES = 10
+def rand_number():
+    count = 0
+    for toss in range(TOSSES):
+        if random.randint(HEAD, TAIL) == HEAD:
+            count += 1
+            print("Орел")
+        else:
+            print("Решка")
+    return f"Орел выпал {count} раз(а). А Решка выпала {TOSSES - count} раз(а)."
+
+print(rand_number())
+
+
+print(round(PI, 2))
 SKID = 0.1
+count = 0
+
+array = [2, 3, 1, 4, 6, 5, 9, 8, 7]
+for i in range(1, len(array)):
+    x = array[i]
+    idx = i
+    while idx > 0 and array[idx-1] > x:
+        array[idx] = array[idx-1]
+        idx -= 1
+    array[idx] = x
+
+print(array)
+
+
+def rec_fact(number):
+    if number == 0:
+        return 1
+    else:
+        return number * rec_fact(number - 1)
+
+
+print(len(str(rec_fact(100))))
+
+
+def main(num1, num2):
+    return f"Сумма чисел {num1} и {num2} равняется {sum_(num1, num2)}"
+
+
+def sum_(num1, num2):
+    return num1 + num2
+
+
+print(main(12, 45))
+
+for i in range(5, -1, -1):
+    print("#", " " * i, "#", sep="")
+minutes_in_day = 0
+for hour in range(24):
+    for minutes in range(60):
+        minutes_in_day += 1
+print(minutes_in_day)
+print("Число\tЕго квадрат")
+for i in range(1, 10):
+    print(f"{i}\t\t\t{i**2:02}")
+
+bal_dict = ["A", "B", "C", "D", "F"]
+
+bal = int(input("Сколько вы набрали баллов? "))
+if bal >= 90:
+    print(f"Ваша оценка {bal_dict[0]}")
+elif bal >= 80:
+    print(f"Ваша оценка {bal_dict[1]}")
+elif bal >= 70:
+    print(f"Ваша оценка {bal_dict[2]}")
+elif bal >= 60:
+    print(f"Ваша оценка {bal_dict[3]}")
+else:
+    print(f"Ваша оценка {bal_dict[-1]}")
 
 print("Нью-Йорк" > "Бостон")
 
@@ -208,12 +330,12 @@ data = [
 print(sorted(data, key=lambda x: x[0]/x[1]**2))
 print(min(data, key=lambda x: x[0]/x[1]**2))
 
-d = {2 : "c", 1 : "d", 4 : "a", 3 : "b"}
+d = {2: "c", 1: "d", 4: "a", 3: "b"}
 
 # Чтобы отсортировать его по ключам, нужно сделать так
 print(dict(sorted(d.items())))
 
-print(dict(sorted(d.items(), key=lambda x: x[1])))
+print(dict(sorted(d.items(), key=lambda x : x[1])))
 
 print(list(map(lambda x: x**2, range(1, 11))))
 
@@ -267,48 +389,6 @@ for c in text:
 result += last + str(player_rect_reaction)  # и добавляем в результат последний символ
 print(result)
 
-# —------Генераторы--------—
-L = [i for i in range(0, 10)]
-M = [i for i in range(10, 0, -1)]
-N = [a*b for a, b in zip(L, M)]
-print(N)
-
-L = [i for i in range(0, 10)]
-print(any(L))
-
-L = [int(input()) % 2 == 0 for i in range(5)]
-print(L)
-
-L = [input() for i in range(3)]
-print(L)
-
-multiplication_table = [[i * j for i in range(1, 11)] for j in range(1, 11)]
-print(multiplication_table)
-for i in multiplication_table:
-    for j in i:
-        print("%2d" % j, end=" ")
-    print()
-
-squares = [i**2 for i in range(1, 11)]
-print(squares)
-
-squares = [i**2 for i in range(1, 11) if i % 2 == 1]
-print(squares)
-
-list_tuples = [(i, i**2) for i in range(1, 11)]
-print(list_tuples)
-
-M = [[i+j for j in range(5)] for i in range(5)]
-print(M)
-# —--------------—
-
-cook_book = {
-'first_el': 'картофель',
-'second_el': 'морковь'
-}
-
-for i, j in cook_book.items():
-    print(f"{i} —- {j}")
 
 a = [1, 3, 5, -3, 4, -4, 0]
 b = a[0]
@@ -671,13 +751,6 @@ for dish in cook_book:
     for food in dish[1]:
         print(f'  {food[0]}, {food[1] * person}{food[2]}')
 
-professions = ['IT', 'Физика', 'Математика']
-persons = [['Гейтс', 'Джобс', 'Возняк'], ['Эйнштейн', 'Фейнман'], ['Эвклид', 'Ньютон']]
-for pro, person_list in zip(professions, persons):
-    print(f'{pro}:')
-    for person in person_list:
-        print(person)
-    print()
 
 data = [
     [13, 25, 23, 34],
@@ -691,88 +764,6 @@ for i, el in enumerate(data):
     sum_ += el[i]
 print(sum_)
 
-# ---------------------------
-geo_logs = [
-    {'visit1': ['Москва', 'Россия']},
-    {'visit2': ['Дели', 'Индия']},
-    {'visit3': ['Владимир', 'Россия']},
-    {'visit4': ['Лиссабон', 'Португалия']},
-    {'visit5': ['Париж', 'Франция']},
-    {'visit6': ['Тула', 'Россия']},
-    {'visit7': ['Курск', 'Россия']},
-    {'visit8': ['Архангельск', 'Россия']}
-]
-for log in geo_logs:
-    print(list(log.values())[0][0], end=" ")
-print()
-geo_logs_copy = geo_logs.copy()
-for log in geo_logs_copy:
-    if 'Россия' not in list(log.values())[0]:
-        geo_logs.remove(log)
-print(geo_logs)
-# ------------Метод 2---------------
-geo_logs = [
-    {'visit1': ['Москва', 'Россия']},
-    {'visit2': ['Дели', 'Индия']},
-    {'visit3': ['Владимир', 'Россия']},
-    {'visit4': ['Лиссабон', 'Португалия']},
-    {'visit5': ['Париж', 'Франция']},
-    {'visit6': ['Тула', 'Россия']},
-    {'visit7': ['Курск', 'Россия']},
-    {'visit8': ['Архангельск', 'Россия']}
-]
-result = []
-for log in geo_logs:
-    # print(list(log.values())[0])
-    if 'Россия' in list(log.values())[0]:
-        result.append(log)
-print(result)
-# ---------------------------
-
-bodycount = {
-    'Проклятие Черной жемчужины': {
-        'человек': 17
-    },
-
-    'Сундук мертвеца': {
-        'человек': 56,
-        'раков-отшельников': 1
-    },
-
-    'На краю света': {
-        'человек': 88
-    },
-
-    'На странных берегах': {
-        'человек': 56,
-        'русалок': 2,
-        'ядовитых жаб': 3,
-        'пиратов зомби': 2
-    }
-}
-dead = 0
-for i in bodycount.values():
-    for j in i.values():
-        dead += j
-print(dead)
-
-
-people = {1: {'name': 'Oleg', 'age': '29', 'sex': 'Male'},
-          2: {'name': 'Kate', 'age': '21', 'sex': 'Female'},
-          3: {'name': 'Liza', 'age': '24', 'sex': 'Female'},
-          4: {'name': 'Pavel', 'age': '36', 'sex': 'Male'}}
-age = 0
-for i in people.values():
-    age += int(i['age'])
-print(age / len(people))
-
-
-europe = {'spain': {'capital':'madrid'},
-           'france': {'capital':'paris'},
-           'germany': {'capital':'berlin'},
-           'norway': {'capital':'oslo'}}
-for country, info in europe.items():
-    print(f'The capital of {country.title()} is {info["capital"].title()}')
 
 countries_temperature = [
     ['Thailand', [75.2, 77, 78.8, 73.4, 68, 75.2, 77]],
@@ -1324,10 +1315,6 @@ colors_splited = colors.split()  # список цветов по-отдельн
 colors_joined = ' and '.join(colors_splited)  # объединение строк
 print(colors_joined)
 
-age = 5
-
-my_age = "I'm " + str(age)
-print(my_age)
 pi = 31.4159265
 print("%.4e" % pi)
 

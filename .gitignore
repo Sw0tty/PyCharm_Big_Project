@@ -1,5 +1,4 @@
 __pycache__/
 .env
 bot_log.log
-python_redis/
 **/python_redis/

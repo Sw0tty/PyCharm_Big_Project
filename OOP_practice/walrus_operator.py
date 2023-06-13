@@ -19,3 +19,8 @@ while True:
 while expression := input('Введите что-нибудь или просто нажмите Enter: '):
     print('Отлично!')
 print('Надоело? Ладно, пока.')
+
+
+while expression := input('Введите что-нибудь или quit: ') != 'quit':
+    print('Отлично!')
+print('Надоело? Ладно, пока.')

@@ -1,6 +1,22 @@
 import random
 import time
+def my_decor(message='Message'):
+    def decorated(func):
 
+        def wrapper(arg_for_func):
+            print(message)
+            print("До")
+            func(arg_for_func)
+            print("После")
+        return wrapper
+
+    return decorated
+
+@my_decor('Yeah')
+def print_name(name):
+    print(f"Hello, {name}")
+
+print_name('Kirill')  # arg_for_func
 
 def removeDuplicates(nums):
     for i in nums:

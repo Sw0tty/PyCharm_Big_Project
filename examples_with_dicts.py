@@ -1,3 +1,44 @@
+from copy import deepcopy
+
+numbers_l = [1, 2, 3, 4]
+numbers_d = {key: key**2 for key in numbers_l}
+print(numbers_d)
+users = {
+    '+324234': 'Mark',
+    '+54356': 'Bob',
+    '+536222': 'Kate'
+}
+
+# Варианты копирования словаря
+users2 = dict(users)
+users3 = users.copy()
+users4 = {key: values for key, values in users.items()}  # Самый медленный метод
+users5 = {**users}
+# -------------------------
+
+users6 = users
+
+print(id(users) == id(users2))
+print(id(users) == id(users3))
+print(id(users) == id(users4))
+print(id(users) == id(users5))
+print(id(users) == id(users6))
+key = '+53622'
+print(users.get(key, f'Ключ {key} не найден'))
+print(users, users2)
+# del users['+324234']
+del_key = users.pop('+54356')
+print(del_key)
+print(users, users2)
+print('----------------')
+
+t_dict = {1: '111', 2: [1, 2, 3]}
+t_dict2 = t_dict.copy()
+users_full_copy = deepcopy(t_dict)
+
+t_dict[2].append(4)
+print(t_dict, t_dict2, users_full_copy, sep='\n')
+
 professions = ['IT', 'Физика', 'Математика']
 persons = [['Гейтс', 'Джобс', 'Возняк'], ['Эйнштейн', 'Фейнман'], ['Эвклид', 'Ньютон']]
 for pro, person_list in zip(professions, persons):

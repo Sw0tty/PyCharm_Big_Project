@@ -1,34 +1,40 @@
+# class Solution(object):
+#     def addTwoNumbers(self, l1, l2):
+#         result = int("".join(map(str, l1[::-1]))) + int("".join(map(str, l2[::-1])))
+#         return list(map(int, str(result)[::-1]))
+#
+# sol = Solution()
+# print(sol.addTwoNumbers(l1 = [2,4,3], l2 = [5,6,4]))
 
-name = 'Barack hussein obama'
-name_res = ""
-count = 0
-for i in name:
-    if i == name[0] or count == 1:
-        name_res += i.upper()
-        count = 0
-    elif i == " ":
-        name_res += "."
-        count += 1
-print(name_res)
 
-# def twoSum(nums, target):
-#     index_list = []
-#     sum_ = 0
-#     for i in nums:
-#         sum_ += i
-#         for j in nums[1:]:
-#             sum_ += j
-#             print(sum_)
-#             if sum_ == target:
-#                 index_list.append(nums.index(i))
-#                 index_list.append(nums.index(j))
-#                 return index_list
-#             print(index_list)
-#         sum_ = 0
+# name = 'Barack hussein obama'
+# name_res = ""
+# count = 0
+# for i in name:
+#     if i == name[0] or count == 1:
+#         name_res += i.upper()
+#         count = 0
+#     elif i == " ":
+#         name_res += "."
+#         count += 1
+# print(name_res)
+
+
+# m = [3, 3]
+# d = [1, 1, 1, 1, 1]
 #
 #
+# def two_sum(nums, target):
+#     for i, j in enumerate(nums):
+#         for k, t in enumerate(nums):
+#             sum_ = j + t
+#             if sum_ == target and i != k:
+#                 return j, t, [i, k]
+#             sum_ = 0
+#     return "Пары не найдено"
 #
-# print(twoSum(nums=[3, 3], target=6))
+#
+# print(two_sum(nums=m, target=6))
 
 
 # def move_zeros(lst):

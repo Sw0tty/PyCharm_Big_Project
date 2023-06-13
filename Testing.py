@@ -1,10 +1,635 @@
-import math
+import datetime
 import random
 import time
 import ctypes
-import math
 from math import pi as PI
+from decimal import Decimal
 
+import threading
+
+
+def letterCombinations(digits: str):
+    comb = []
+    letters = {'2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl', '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz'}
+    if not digits:
+        return comb
+    elif len(digits) == 1:
+        return list(letters[digits])
+    for i in letters[digits[0]]:
+        comb.extend([i]*(len(letters[digits[0]])*len(digits)))
+
+
+    # count = 0
+    # while True:
+    #     for i in letters[digits[count]]:
+    #         for j in i:
+    #             for k in letters[digits[count + 1]]:
+    #                 for h in k:
+    #                     comb.append(f"{j}{h}")
+    #     if count + 1 == len(digits) - 1:
+    #         break
+    #     count += 1
+    return comb
+
+print(letterCombinations('234'))
+dddd = "North East South West"
+print(" ".join(dddd.split()[:3])+"...")
+
+ff = {'user': 2}
+print(ff.get('user'))
+# print([i for i in time.localtime()[2::-1]])
+print(datetime.datetime.now())
+breakpoint()
+result = float(Decimal('0.6') - Decimal('0.1'))
+print(type(result))
+
+print(float("inf"), float("-inf"), float("nan"))
+
+seq = ["1", "435", "65", "-57"]
+print(max(seq, key=str))
+print(2.1.is_integer())
+
+def go(direction):
+    match direction:
+        case "North" | "East" | "South" | "West":
+            return "Хорошо, я пошел!"
+        case _:
+            return "Неизвестное направление..."
+
+print(go("North"))
+print(go("asfasdf"))
+
+print((lambda x: x + 3)(13))
+
+
+def func(x):
+    intermediate_var = x**2 + x + 1
+
+    if intermediate_var % 2:
+        y = intermediate_var ** 3
+    else:
+        y = intermediate_var ** 3 + 1
+
+    # setting attributes here
+    func.optional_return = intermediate_var
+    func.is_awesome = 'Yes, my function is awesome.'
+
+    return y
+
+y = func(3)
+print(func(3))
+def show_letters(some_str):
+    yield from ''.join([letter for letter in some_str if letter.isalpha()])
+
+
+random_str = show_letters('A!sdf 09 _ w')
+print(next(random_str))
+print(next(random_str))
+
+# -------------------------------------
+def writer(x, event_for_wait, event_for_set):
+    for i in range(10):
+        event_for_wait.wait()  # wait for event
+        event_for_wait.clear()  # clean event for future
+        print(x)
+        event_for_set.set()  # set event for neighbor thread
+
+
+# init events
+e1 = threading.Event()
+e2 = threading.Event()
+
+# init threads
+t1 = threading.Thread(target=writer, args=(0, e1, e2))
+t2 = threading.Thread(target=writer, args=(1, e2, e1))
+
+# start threads
+t1.start()
+t2.start()
+
+e1.set()  # initiate the first event
+
+# join threads to the main thread
+t1.join()
+t2.join()
+# -------------------------------------
+
+
+
+class Rectangle:
+
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+
+
+class Square(Rectangle):
+
+    def __init__(self, lenght, width):
+        super().__init__(lenght, width)
+
+    def area(self):
+        return self.length*self.width
+
+
+class Cube(Rectangle):
+
+    def __init__(self, lenght, width, height):
+        super().__init__(lenght, width)
+        self.height = height
+
+    def volume(self):
+        return self.length*self.width*self.height
+
+
+square = Square(2, 3)
+cube = Cube(3, 3, 3)
+
+print(square.area())
+print(cube.volume())
+
+print(Rectangle.__dict__)
+def sum_(*args):
+    return sum(args)
+
+lpp = random.shuffle([1, 3, 4, 1])
+print(lpp)
+
+class O: ...
+class A(O): ...
+class B(O): ...
+class C(O): ...
+class D(O): ...
+class E(O): ...
+class K1(A, B, C): ...
+class K2(B, D): ...
+class K3(C, D, E): ...
+class Z(K1, K2, K3): ...
+
+def print_mro(T):
+    print(*[i.__name__ for i in T.mro()], sep=' -> ')
+
+print_mro(Z)
+
+def int_to_roman(num):
+    str_ = ''
+    roman_dict = {1000: 'M', 900: 'CM', 500: 'D', 400: 'CD', 100: 'C', 90: 'XC', 50: 'L', 40: 'XL', 10: 'X', 9: 'IX',
+                  5: 'V', 4: 'IV', 1: 'I'}
+    for i, j in roman_dict.items():
+        str_ += j * (num // i)
+        num -= i * (num // i)
+        if not num:
+            break
+    return str_
+
+
+print(int_to_roman(3114))
+
+
+
+def romanToInt(s):
+    sum_ = 0
+    roman_dict = {'I': 1, 'IV': 4, 'V': 5, 'IX': 9, 'X': 10, 'XL': 40, 'L': 50,
+                  'XC': 90, 'C': 100, 'CD': 400, 'D': 500, 'CM': 900, 'M': 1000}
+    count = 0
+    for i, j in enumerate(s):
+        if count > 0:
+            count = 0
+            continue
+        if j in ['I', 'C', 'X']:
+            try:
+                if j + s[i + 1] in roman_dict:
+                    sum_ += roman_dict[j + s[i + 1]]
+                    count += 1
+                else:
+                    sum_ += roman_dict[j]
+            except IndexError:
+                sum_ += roman_dict[j]
+        else:
+            sum_ += roman_dict[j]
+    return sum_
+
+print(romanToInt('DCXXI'))
+
+lst = [11, 5, 8, 32, 15, 3, 20, 132, 21, 4, 555, 9, 20]
+print(divmod(6, 6))
+def sol_lst(lst):
+    sum_ = 0
+    new_lst = []
+    for i in lst:
+        if i < 30 and i % 3 == 0:
+            new_lst.append(i)
+        else:
+            sum_ += i
+    return f"Список отобранных элементов: {new_lst}\nСумма остльаных элементов: {sum_}"
+
+print(sol_lst(lst))
+def rev_words(str_):
+    l_str_ = str_.split()
+    str_ = " ".join(l_str_[::-1])
+    return str_
+
+print(rev_words("My name is Michele"))
+
+
+def first_and_last(dif_list):
+    return [dif_list[0], dif_list[-1]]
+
+print(first_and_last([random.randint(1, 100) for i in range(10)]))
+
+def start_game():
+    count = 0
+    number = random.randint(0, 9)
+    print("Число загадано.")
+    return count, number
+
+
+game_stats = []
+count, number = start_game()
+while True:
+    count += 1
+    answer = int(input("Есть варианты? "))
+    if answer < number:
+        print("Загаданное число больше")
+    elif answer > number:
+        print("Загаданное число меньше")
+    else:
+        print("Да! Вы угадали!")
+        game_stats.append((count, number))
+        answer = input("Сыграем еще раз?(yes - да) ")
+        if answer == 'yes':
+            count, number = start_game()
+            continue
+        else:
+            for i, j in enumerate(game_stats):
+                print(f"Вот ваши результаты:\n\tВ партии №{i + 1} вам понадобилось {j[0]} попыток,"
+                      f"чтобы отгадать число {j[1]}")
+            break
+
+choice_list = ['Камень', 'Ножницы', 'Бумага']
+while True:
+    choice = input("Чем сходите? ")
+    if choice.lower().title() not in choice_list:
+        print("Такой фигуры нет в этой игре")
+        continue
+    ai = random.choice(choice_list)
+    if ai == choice_list[0] and choice.lower().title() == choice_list[1] or \
+       ai == choice_list[1] and choice.lower().title() == choice_list[2] or \
+       ai == choice_list[2] and choice.lower().title() == choice_list[0]:
+        print(f"Компьютер выбрал {ai}, а вы выбрали {choice.lower().title()}. Вы проиграли")
+    elif ai == choice.lower().title():
+        print(f"Компьютер выбрал {ai}, а вы выбрали {choice.lower().title()}. Ничья!")
+    else:
+        print(f"Компьютер выбрал {ai}, а вы выбрали {choice.lower().title()}. Вы выиграли")
+    break
+
+
+class User:
+    def __init__(self, name, age, gender):
+        self.name = name
+        self.age = age
+        self.gender = gender
+
+
+u_list = [['Masha', 25, 'Female'], ['Spike', 22, 'Male']]
+
+u_dict = {1: ['Masha', 25, 'Female'], 2: ['Spike', 22, 'Male']}
+u_objects = []
+print(u_dict[1])
+for i in u_dict:
+    user = User(*u_dict[i])
+    print(user.name, user.age, user.gender)
+# for i in u_list:
+#     user1 = User(i[0], i[1], i[2])
+#     u_objects.append(user1)
+#     print(user1.name, user1.gender)
+
+
+in_number = int(input("Для какого числа вывести все делители? "))
+a = [1]
+for i in range(2, in_number + 1):
+    if in_number % i == 0:
+        a.append(i)
+print(a)
+
+DD = {1: '1', 2: '2'}
+DD[3] = DD.pop(1)
+DD = dict(sorted(DD.items(), key=lambda x: x[0]))
+print(DD)
+rus_lower = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
+for position in range(11):
+    print('^' * 27)
+    for letter in rus_lower:
+        if rus_lower.index(letter) % 11 == position:
+            print('| ', letter.upper(), letter, ' |', end='')
+    print()
+print('^' * 27)
+
+
+
+def check_pass(pswd: str):
+    D = {1: ['Длинна пароля меньше 8 символов', True], 2: ['Нет заглавного символа', True],
+         3: ['Нет строчного символа', True], 4: ['Нет числа', True],
+         5: ['Нет спец символа', True]}
+    if len(pswd) >= 8:
+        D[1][1] = False
+    for i in pswd:
+        if i.isupper():
+            D[2][1] = False
+        if i.islower():
+            D[3][1] = False
+        if i.isdigit():
+            D[4][1] = False
+        if not i.isdigit() and not i.isalpha():
+            D[5][1] = False
+        count = 0
+        for i in D.values():
+            if i[1] == True:
+                count += 1
+        if count == 0:
+            return "Пароль идеален"
+    return f"Выявленные недочеты пароля:\n{list(item[0] for item in D.values() if item[1] == True)}"
+
+
+print(check_pass('fF1#23499'))
+
+def shortener(str_):
+    while '(' in str_ or ')' in str_:
+        left = str_.rfind('(')
+        right = str_.find(')', left)
+        str_ = str_.replace(str_[left:right + 1], '')
+    return str_
+
+print(shortener('fdg(dfdg) () dgg (fghfg(dfgdfg)) bbb'))
+
+def camel(str_: str) -> str:
+    n_str = ''
+    count = 2
+    for i in str_:
+        if i.isalpha():
+            n_str += i.upper() if count % 2 == 0 else i.lower()
+        else:
+            n_str += i
+            continue
+        count += 1
+    return n_str
+
+
+print(camel('Gfg fghgjnynnn, !$ #yjkkkbxxzgGGGf ff'))
+
+def top3(str_: str) -> str:
+    str_ = str_.lower().replace(' ', '')
+    D = sorted({item: str_.count(item) for item in str_}.items(), key=lambda x: x[1], reverse=True)
+    s1, s2, s3 = D[0:3]
+    return f"{s1[0]}-{s1[1]}, {s2[0]}-{s2[1]}, {s3[0]}-{s3[1]}"
+
+print(top3('Gfg fghgjnynnnyjkkkbxxzgGGGf ff'))
+
+def search_substr(substr: str, str_: str) -> str:
+    return "Есть контакт!" if substr.lower() in str_.lower() else "Мимо!"
+
+
+print(search_substr('ЛЬ', 'Пальма'))
+
+
+def first_last(letter: str, str_: str) -> tuple:
+    if letter.lower() not in str_.lower():
+        return ('None', 'None')
+    return (str_.lower().find(letter.lower()), str_.lower().rfind(letter.lower()))
+
+print(first_last('п', 'пальпма'))
+
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance
+
+    def get_balance(self):
+        return f"На счету: {self.__balance}"
+
+    def deposit(self, amount):
+        self.__balance += amount
+        return f"Транзакция проведена. {self.get_balance()}"
+
+    def withdraw(self, amount):
+        if self.__balance >= amount:
+            self.__balance -= amount
+            return f"Транзакция проведена. {self.get_balance()}"
+        else:
+            return "Недостаточно средств"
+
+    def __str__(self):
+        return f"Сотояние счета на данный момент составляет ${self.__balance:,.2f}"
+
+
+account = BankAccount(100)
+print(account.get_balance())
+print(account.deposit(1000))
+print(account.withdraw(100))
+print(account)
+
+class Coin:
+    def __init__(self):
+        self.__sideup = 'Орел'
+
+    def toss(self):
+        if random.randint(0, 1) == 0:
+            self.__sideup = 'Орел'
+        else:
+            self.__sideup = 'Решка'
+
+    def get_sideup(self):
+        return self.__sideup
+
+
+toss1 = Coin()
+toss2 = Coin()
+toss3 = Coin()
+toss1.toss()
+toss2.toss()
+toss3.toss()
+
+
+print(toss1.get_sideup(), toss2.get_sideup(), toss3.get_sideup())
+
+ll = ['один', 'два']
+my_set = set(ll)
+print(my_set)
+my_set.discard('3')
+print(my_set)
+phonebook = {'Крис': '919-555-1111', 'Кэти': '828-555-2222', 'Джоанна': '704-555-3333', 'Курт': '919-555-3333'}
+# phonebook_copy = {item: phonebook[item] for item in phonebook if phonebook[item].startswith('919')}
+phonebook_copy = {item: value for item, value in phonebook.items() if value.startswith('919')}
+print(phonebook_copy)
+def set_gen(lst):
+    lst = {i: lst.count(i) for i in lst}
+    lst = {str(i)*j for i, j in lst.items()}
+    return lst
+
+print(set_gen([1, 1, 1, 3, 3, 3]))
+
+
+
+
+t_set = {i for i in range(0, 10)}
+ttt = [i for i in range(0, 10)]
+t_str = "1234"
+print(t_set.issuperset(ttt))
+print(set(t_str))
+def tpl_sort(tpl: tuple):
+    for i in tpl:
+        if type(i) != int:
+            return tpl
+    tpl = tuple(sorted(tpl))
+    return tpl
+tpl = 8, 3, 1, 32, 5
+print(tpl_sort(tpl))
+
+
+
+def to_dict(lst):
+    return {key: str(key) for key in lst}
+print(to_dict([i for i in range(0, 10)]))
+
+
+my_dict = {'first_one': 'we can do it'}
+def biggest_dict(**kwargs):
+    # key, value = kwargs
+    # my_dict[key] = value
+    my_dict.update(kwargs)
+    return my_dict
+print(biggest_dict(mdict=2, name='Leme'))
+
+def count_it(sequence):
+    # Берем значение из списка, делаем из него ключ и считаем для значения
+    sequence_dict = {str(key): sequence.count(key) for key in sequence}
+    # Сортируем по значению 'key=lambda el: el[1]'
+    sequence_dict = dict(sorted(sequence_dict.items(), key=lambda el: el[1], reverse=True))
+    return sequence_dict
+print(count_it('11144333355555551111111111333'))
+
+
+# def replace_elements(dct: dict):
+#     first, last = list(dct.items())[0], list(dct.items())[-1]
+#     list(dct.items())[0], list(dct.items())[-1] = list(dct.items())[-1], list(dct.items())[0]
+#     dct.pop(last[0])
+#     #
+#     # print(dct)
+#     dct[first[0]] = dct[last[0]]
+#     # dct[last[0]] = last[1]
+#     return dct
+# print(replace_elements({1: 1, 2: 2, 3: 3, 4: 4, 5: 5}))
+
+tl1 = ['Эйнштейн', 'Ньютон', 'Коперник', 'Кеплер']
+for name in tl1:
+    print(name)
+numbers_l = [i for i in range(0, 5)]
+numbers_l2 = numbers_l.copy()
+print(numbers_l2 is numbers_l)
+print(id(numbers_l), id(numbers_l2))
+print(numbers_l, numbers_l2)
+numbers_l.append(33)
+print(numbers_l, numbers_l2)
+print('dsgF№f32423v3'.endswith('vf3'))
+
+tl1 = [2, 4, 8, 9]
+tl2 = [i ** 2 for i in tl1]
+print(tl2)
+t1 = tuple(i for i in range(10))
+print(t1)
+t1 = list(t1)
+t1.insert(0, 33333)
+t1 = tuple(t1)
+print(t1)
+
+l1 = [[0] * 4 for i in range(1, 4)]
+for i in range(len(l1)):
+    for j in range(len(l1[0])):
+        l1[i][j] = random.randint(0, 100)
+print(l1)
+r = ['ананас', 7, 1, 2, 3, 5]
+r = [str(i) for i in r]
+r.append('ананас')
+r.sort()
+r = list(map((lambda x: int(x) if x.isdigit() else x.title()), r))
+# for i in r:
+#     r[r.index(i)] = int(i) if i.isdigit() else i.title()
+r.remove(3)
+print(r)
+del r[1:3]
+print(r)
+# r.remove(1)
+# r.remove(1)
+# r.insert(0, 2)
+# print(r)
+
+
+def test(first, *args):
+    print(first)
+    for i in args:
+        print(i, "args")
+
+test(3, 5, 6, 4, 23, 2)
+# ----------How Work Iterator------------
+class SimpleIterator:
+    def __iter__(self):
+        return self
+
+    def __init__(self, limit):
+        self.limit = limit
+        self.counter = 0
+
+    def __next__(self):
+        if self.counter < self.limit:
+            self.counter += 1
+            return self.counter
+        else:
+            raise StopIteration
+
+
+simp = SimpleIterator(5)
+
+
+for i in simp:
+    print(i)
+# ----------------------
+# str_ = iter("123456")
+# while True:
+#     ques = input("Дальше?")
+#     if ques:
+#         print(next(str_))
+# ----------------------
+
+numbers_str = "33333"
+new_str = ""
+for i, j in enumerate(numbers_str):
+    if i == 2:
+        new_str += "$"
+        continue
+    new_str += j
+print(new_str)
+
+print(isinstance(numbers_str, int | bool | str))
+A1 = range(10)
+A5 = {i: i*i for i in A1}
+print(A5)
+
+b = 4 + 3j
+print(type(b), b)
+print(time.strftime("%Y-%m-%d"))
+
+fr = 5
+print(fr.bit_count())
+amount = '1.1'
+amount = float(amount)
+if int(amount) == float(amount):
+    amount = int(amount)
+amount = str(amount)
+amount.capitalize()
+gg = '2344325545533313'
+print(gg[-2::1])
+print(gg[-2])
+
+print([str(i) for i in range(6, 21)])
 
 def sum_numbers(first_number, second_number):
     return first_number + second_number
@@ -319,25 +944,6 @@ print(list(map(str.upper, a)))
 print(list(x.upper() for x in a))
 print(list(map(lambda x: x.upper(), a)))
 
-# (вес, рост)
-data = [
-   (82, 1.91),
-   (68, 1.74),
-   (90, 1.89),
-   (73, 1.79),
-   (76, 1.84)
-]
-print(sorted(data, key=lambda x: x[0]/x[1]**2))
-print(min(data, key=lambda x: x[0]/x[1]**2))
-
-d = {2: "c", 1: "d", 4: "a", 3: "b"}
-
-# Чтобы отсортировать его по ключам, нужно сделать так
-print(dict(sorted(d.items())))
-
-print(dict(sorted(d.items(), key=lambda x : x[1])))
-
-print(list(map(lambda x: x**2, range(1, 11))))
 
 def positive(x):
     return x % 2 == 0
@@ -390,17 +996,6 @@ result += last + str(player_rect_reaction)  # и добавляем в резу�
 print(result)
 
 
-a = [1, 3, 5, -3, 4, -4, 0]
-b = a[0]
-
-for i in a:
-    if i < b:
-        b = i
-print(b)
-
-print(random.randint(0, 100))
-print()
-
 a = [1, 'Hello', 3, [2, 6, 9, "True"]]
 for i in a:
     if type(i) == list:
@@ -414,28 +1009,10 @@ print(list(len(x) for x in lllist))
 print(list(x.upper() for x in lllist))
 
 
-
 str_numbers = list(map(int, input().split()))
 print(str_numbers)
 print(not any(str_numbers))
 
-a = int(input())
-
-if all([type(a) == int,
-        100 <= a <= 999,
-        a % 2 == 0,
-        a % 3 == 0]):
-    print("Число удовлетворяет условиям")
-
-
-if type(a) == int:
-    print("Число целое")
-if a in range(100, 1000):
-    print("Входит в промежуто от 100 до 999")
-if a % 3 == 0:
-    print("Делится на 3")
-if a % 2 == 0:
-    print("Делится на 2")
 
 some_var = (2,)
 if some_var is None:
@@ -455,37 +1032,6 @@ while id(a) == id(b):
     b -= 1
 print(a)
 
-
-
-
-def my_decorator(fn):
-   def wrapper():
-       fn()
-   return wrapper  # возвращается задекорированная функция, которая заменяет исходную
-
-# выведем незадекорированную функцию
-def my_function():
-   pass
-print(my_function)  # <function my_function at 0x7f938401ba60>
-
-# выведем задекорированную функцию
-@my_decorator
-def my_function():
-   pass
-print(my_function)
-
-
-def twice_func(inside_func):
-    """Функция, выполняющая дважды функцию принятую в качестве аргумента"""
-    inside_func()
-    inside_func()
-
-
-def hello():
-    print("Hello")
-
-
-test = twice_func(hello)
 
 # def fib():
 #     a, b = 0, 1
@@ -601,26 +1147,6 @@ correct_func([123])
 print('-----')
 correct_func(name_arg=[123])
 
-
-def adder(*nums):
-    sum_ = 0
-    for n in nums:
-        sum_ += n
-
-    return sum_
-
-
-print(adder(8, 3, 1, 2))
-
-a = [1, 2, 3]
-b = [a, 4, 5, 6]
-print(b)
-# [[1, 2, 3], 4, 5, 6]
-
-a = [1, 2, 3]
-b = [*a, 4, 5, 6]
-print(b)
-# [1, 2, 3, 4, 5, 6]
 
 PI = 3.14
 def test(r):
@@ -1251,20 +1777,13 @@ print("number1=", number1, "number2=", number2)
 print("-" * 20)
 # ---------------
 
-# ---------------
 
-list_of_ints = [80, 443, 8080, 8081]
-print(', '.join(map(str, list_of_ints)))  # преобразование списка чисел в строку
-# ---------------
-
-# ---------------
-print("-" * 20, "\nВыборка из сложных списков")
+# -------Выборка из сложных списков--------
 x = [10, [3.141, 20, [30, 'baz', 2.718]], 'foo']
 print(x[1][2][1])  # выведет 'baz'
 # ---------------
 
-# ---------------
-print("-" * 20, "\nСортировка, удаление")
+# ------Сортировка, удаление---------
 z = [2, 7, 4, 1, 7]
 z.sort(reverse=True)
 print(z)
@@ -1294,26 +1813,6 @@ L1 = ['3.3', '4.4', '5.5', '6.6']
 
 print(list(map(float, L1)))
 
-L2 = [3.3, 4.4, 5.5, 6.6]
-# print(map(round, L2))
-print(list(map(round, L2)))
-
-# допустим, у нас есть список, содержащий первые 4 буквы латинского алфавита
-letters = ['a', 'b', 'c', 'd']
-letters.append('e')  # с помощью метода append() мы добавляем ещё один элемент в список
-print(letters)
-print(letters[len(letters) - 1])
-
-colors = 'red blue green'
-print(colors.split())
-print(colors)
-
-word = " /home/user/documents/file.txt"
-print(word.split("/"))
-
-colors_splited = colors.split()  # список цветов по-отдельности
-colors_joined = ' and '.join(colors_splited)  # объединение строк
-print(colors_joined)
 
 pi = 31.4159265
 print("%.4e" % pi)

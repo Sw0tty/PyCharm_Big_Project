@@ -1,12 +1,13 @@
-import math
-import string
-import time
-
-from my_functions import input_number
-
 """
 -+--Ben_Stivenson_Sbornik_uprazhneniy_Python--+-
 """
+import math
+import random
+import string
+import time
+from decimal import Decimal
+from my_functions import input_number
+
 
 """
 --Упражнение 1 Почтовый адрес--
@@ -131,6 +132,72 @@ from my_functions import input_number
 # print(f"Десятичный логарифм числа A: {math.log(a)}")
 # print(f"Результат возведения числа A и B: {a ** b}")
 
+"""
+--Упражнение 12 Расстояние между точками на Земле--
+"""
+# EARTH_AVR = 6371.01
+#
+# def distance_of_dots(t1, t2, g1, g2):
+#     distance = round(EARTH_AVR*math.acos(math.sin(t1)*math.sin(t2) + math.cos(t1)*math.cos(t2)*math.cos(g1 - g2)), 6)
+#     return f"Дистанция между точками: {distance}"
+#
+#
+# while True:
+#     try:
+#         t1, t2 = map(int, (input("Введите координаты первой точки через пробел ")).split())
+#         g1, g2 = map(int, (input("Введите координаты второй точки через пробел ")).split())
+#         print(distance_of_dots(t1, t2, g1, g2))
+#         break
+#     except ValueError:
+#         print("Неверное значение!")
+
+
+"""
+--Упражнение 13 Размен--
+"""
+
+# class BelowZero(Exception):
+#     pass
+#
+#
+# class IsZero(Exception):
+#     pass
+#
+#
+# def give_change(cash: int):
+#     change_money = [200, 100, 25, 10, 5]
+#     change = {'2D': 0, '1D': 0, '25C': 0, '10C': 0, '5C': 0, '1C': 0}
+#     for i, j in enumerate(change.keys()):
+#         if not cash:
+#             break
+#         if j == '1C':
+#             change[j] = cash
+#             break
+#         count = cash // change_money[i]
+#         change[j] = count
+#         cash -= count * change_money[i]
+#     return "Количество двухдолларовых купюр: {}\n" \
+#            "Количество однодолларовых купюр: {}\n" \
+#            "Количество монет в 25 центов: {}\n" \
+#            "Количество монет в 10 центов: {}\n" \
+#            "Количество монет в 5 центов: {}\n" \
+#            "Количество монет в 1 цент: {}".format(*change.values())
+#
+#
+# while True:
+#     try:
+#         cash = int(input("Сколько центов на сдачу? "))
+#         if cash < 0:
+#             raise BelowZero
+#         print(give_change(cash))
+#         break
+#     except ValueError:
+#         print("Принимаются только целые числа!")
+#     except BelowZero:
+#         print("Значение меньше нуля!")
+#     except IsZero:
+#         print("Без сдачи")
+
 
 """
 --Упражнение 14 Рост--
@@ -146,7 +213,6 @@ from my_functions import input_number
 #                 print(f"Ваш рост составляет: {int(height // 100)}м и {round(height % 100, 3)}мм")
 #                 break
 #         break
-
 
 """
 --Упражнение 15 Расстояние--
@@ -436,7 +502,7 @@ from my_functions import input_number
 
 
 """
-Упражнение 39 Сколько дней в месяце?
+--Упражнение 39 Сколько дней в месяце?--
 """
 # class DaysMonth:
 #     def __init__(self, month):
@@ -466,6 +532,45 @@ from my_functions import input_number
 #         print("Месяца состоят только из букв")
 #     else:
 #         print(user_month.in_month())
+#         break
+
+"""
+--Упражнение 40 Громкость звука--
+"""
+
+# class BelowZero(Exception):
+#     pass
+#
+#
+# sounds_dict = {130: 'Отбойный молоток', 106: 'Газовая газонокосилка', 70: 'Будильник', 40: 'Тихая комната'}
+#
+# def sound_like(sound: int, sounds: dict):
+#     if sound in sounds.keys():
+#         return f"Такая громкость у: {sounds[sound]}"
+#     elif sound > 130:
+#         return f"Такая громкость больше, чем у: {sounds[130]}"
+#     elif sound < 40:
+#         return f"Такая громкость тише, чем у: {sounds[40]}"
+#     for i, j in enumerate(sounds.keys()):
+#         check = j
+#         if j > sound < list(sounds)[i + 1]:
+#             continue
+#         return f"Такая громкость тише, чем у: {sounds[check]}, " \
+#                f"но громче, чем у: {sounds[list(sounds)[i + 1]]}"
+#
+#
+# while True:
+#     try:
+#         sound = int(input("Введите громкость звука: "))
+#         if sound < 0:
+#             raise BelowZero
+#         sound_like(sound, sounds_dict)
+#     except ValueError:
+#         print("Недопустимое значение!")
+#     except BelowZero:
+#         print("Значение ниже нуля!")
+#     else:
+#         sound_like(sound, sounds_dict)
 #         break
 
 
@@ -506,4 +611,726 @@ from my_functions import input_number
 """
 Упражнение 46 Какого цвета клетка?
 """
+
+"""
+--Упражнение 63 Среднее значение--
+"""
+
+# def list_avg():
+#     numbers_list = []
+#     while (number := input("Введите число: ")) != '0':
+#         try:
+#             numbers_list.append(float(number))
+#         except ValueError:
+#             print("Только числа")
+#     return sum(numbers_list) / len(numbers_list)
+#
+# print(list_avg())
+
+"""
+--Упражнение 64 Таблица со скидками--
+"""
+
+# initial_prices = [4.95, 9.95, 14.95, 19.95, 24.95]
+# changes = [(i, i * 60 / 100, i - i * 60 / 100) for i in initial_prices]
+# print("Начальная цена|Скидка|Цена по скидке")
+# for i in changes:
+#     print("{:14.2f}|{:6.2f}|{:14.2f}".format(*i))
+
+"""
+--Упражнение 65 Таблица соотношения температур--
+"""
+
+# CONSTANT = float(Decimal('9') / Decimal('5'))
+# print("|Цельсия | Фаренгейт|")
+# degrees = [(i, (i*CONSTANT) + 32) for i in range(0, 101, 10)]
+# for i in degrees:
+#     print("|{:<8}|{:>10}|".format(*i))
+
+"""
+--Упражнение 69 Билеты в зоопарк--
+"""
+
+# class BelowZero(Exception):
+#     pass
+#
+#
+# class NotBirth(Exception):
+#     pass
+#
+#
+# def ticket_price() -> str:
+#     visitors = []
+#     while age := input("Сколько вам лет? "):
+#         try:
+#             age = int(age)
+#             if age == 0:
+#                 raise NotBirth
+#             elif age < 0:
+#                 raise BelowZero
+#             if 3 <= age <= 12:
+#                 visitors.append(14)
+#             elif age > 65:
+#                 visitors.append(18)
+#             elif 12 < age <= 65:
+#                 visitors.append(23)
+#         except ValueError:
+#             print()
+#         except NotBirth:
+#             print("Вы еще не родились")
+#         except BelowZero:
+#             print("Вам не может быть меньше нуля")
+#     return f"Общая сумма всех билетов: ${sum(visitors)}"
+#
+#
+# print(ticket_price())
+
+
+"""
+Упражнение 86 Плата за такси
+"""
+# PRICE = 4.00
+# DRIVE_FOR_M = 0.25
+#
+#
+# def total_taxi_price(distance):
+#     return f"С вас ${PRICE + ((distance / 140) * DRIVE_FOR_M)}"
+#
+#
+# print(total_taxi_price(140))
+
+
+"""
+Упражнение 87 Расчет стоимости доставки
+"""
+
+# FOR_FIRST = 10.95
+# ANOTHER = 2.95
+#
+#
+# def delivery(value):
+#     return f"Стоимость доставки ${round(FOR_FIRST + (ANOTHER * (value - 1)), 2)}"
+#
+#
+# while True:
+#     value = input("Сколько в вашем заказе предметов: ")
+#     if value.isdigit() and value != '0':
+#         value = int(value)
+#         print(delivery(value))
+#         break
+#     print("Принимаются только целые числа большие 0")
+#     continue
+
+"""
+Упражнение 88 Медиана трех значений
+"""
+
+# def mediana(n1, n2, n3):
+#     return sorted([n1, n2, n3])[1]
+#
+#
+# while True:
+#     user_numbers = input("Введите три числа через пробел ")
+#     try:
+#         n1, n2, n3 = map(int, user_numbers.split())
+#     except Exception:
+#         continue
+#     else:
+#         print(mediana(n1, n2, n3))
+#         break
+
+"""
+Упражнение 93 Центрируем строку
+"""
+
+# def center_str(s, spaces):
+#     return f"|{s:^{spaces}s}|"
+#
+# print(center_str("Меж пробелами", 25))
+
+"""
+Упражнение 94 Треугольник ли?
+"""
+
+# def is_triangle(n1, n2, n3):
+#     sort_num = sorted([n1, n2, n3])
+#     return True if sort_num[0] + sort_num[1] > sort_num[2] else False
+#
+#
+# while True:
+#     user_numbers = input("Введите три числа через пробел ")
+#     try:
+#         n1, n2, n3 = map(int, user_numbers.split())
+#     except Exception:
+#         continue
+#     else:
+#         print(is_triangle(n1, n2, n3))
+#         break
+
+"""
+Упражнение 95 Озаглавим буквы
+"""
+
+# def upper_first_letter(str_: str) -> str:
+#     counter = -1
+#     str_list = str_.split()
+#     for i in str_list:
+#         counter += 1
+#         if counter == 0 or '!' in str_.split()[counter - 1] or '?' in str_.split()[counter - 1]\
+#                 or '.' in str_.split()[counter - 1]:
+#             str_list[counter] = i.capitalize()
+#     return " ".join(str_list)
+#
+#
+# print(upper_first_letter("""what time do i have to be there?
+# what’s the address? this time i’ll try to be on time!"""))
+
+"""
+Упражнение 96 Является ли строка целым числом?
+"""
+# def is_integer(str_: str) -> bool:
+#     try:
+#         if float(str_.replace(" ", "")) == int(float(str_.replace(" ", ""))):
+#             return True
+#         else:
+#             return False
+#     except ValueError:
+#         return False
+#
+#
+# if __name__ == '__main__':
+#     print(is_integer(' -3 .0 '))
+
+"""
+Упражнение 98 Простое число?
+"""
+
+# def is_simple(digit: int) -> bool:
+#     counter = 2
+#     for i in range(2, int(math.sqrt(digit))):
+#         if digit % i == 0:
+#             counter += 1
+#         if counter > 2:
+#             return False
+#     return True
+#
+# if __name__ == '__main__':
+#     print(is_simple(809))
+
+"""
+Упражнение 99 Следующее простое число
+"""
+# def next_simple(digit: int):
+#     digit += 1
+#     while not is_simple(digit):
+#         print()
+#         digit += 1
+#     return digit
+#
+# if __name__ == '__main__':
+#     print(next_simple(983))
+
+"""
+Упражнение 100 Случайный пароль
+"""
+
+# def random_password():
+#     password = ''
+#     for i in range(1, random.randint(8, 11)):
+#         password += chr(random.randint(33, 126))
+#     return password
+#
+#
+# if __name__ == '__main__':
+#     print(random_password())
+
+"""
+Упражнение 101 Случайный номерной знак
+"""
+
+# def random_plate_number():
+#     plate_number = ''
+#     for i in range(5):
+#         if len(plate_number) >= 4:
+#             plate_number += f"{str(random.randint(0, 999)):>03s}"
+#         else:
+#             plate_number += chr(random.randint(1040, 1071))
+#     return plate_number
+#
+# print(random_plate_number())
+
+"""
+Упражнение 110 Порядок сортировки
+"""
+
+# numbers_list = []
+# while True:
+#     try:
+#         number = int(input("Введите целое число (0 - закончить): "))
+#         if number == 0:
+#             break
+#         numbers_list.append(number)
+#     except ValueError:
+#         print("Принимаются только целые числа!")
+#
+# print(*sorted(numbers_list), sep='\n')
+
+"""
+Упражнение 111 Обратный порядок
+"""
+
+# numbers_list = []
+# while True:
+#     try:
+#         number = int(input("Введите целое число (0 - закончить): "))
+#         if number == 0:
+#             break
+#         numbers_list.append(number)
+#     except ValueError:
+#         print("Принимаются только целые числа!")
+#
+# print(*sorted(numbers_list, reverse=True), sep='\n')
+
+"""
+Упражнение 112 Удаляем выбросы
+"""
+
+# class ShortList(Exception):
+#     pass
+#
+#
+# def cut_list(list_: list):
+#     cutting_list = list_.copy()
+#     cutting_list.remove(max(cutting_list))
+#     cutting_list.remove(min(cutting_list))
+#     return f"Original: {list_}\nCutting: {cutting_list}"
+#
+#
+# numbers_list = []
+# while True:
+#     try:
+#         number = int(input("Введите целое число (0 - закончить): "))
+#         if number == 0:
+#             break
+#         numbers_list.append(number)
+#     except ValueError:
+#         print("Принимаются только целые числа!")
+# if len(numbers_list) < 4:
+#     raise ShortList("Список слишком короткий!")
+# else:
+#     print(cut_list(numbers_list))
+
+"""
+Упражнение 113 Избавляемся от дубликатов
+"""
+# list_of_strings = []
+# def del_repeats(list_: list):
+#     list_ = list_[::-1]
+#     for i in list_:
+#         while list_.count(i) > 1:
+#             list_.remove(i)
+#     return list_[::-1]
+#
+# while True:
+#     user_str = input("Введите строку: ")
+#     if not user_str:
+#         break
+#     list_of_strings.append(user_str)
+#
+# print(del_repeats(list_of_strings))
+
+"""
+Упражнение 114 Отрицательные, положительные и нули
+"""
+
+# numbers_list = []
+# while True:
+#     try:
+#         number = input("Введите целое число (0 - закончить): ")
+#         if not number:
+#             break
+#         numbers_list.append(int(number))
+#     except ValueError:
+#         print("Принимаются только целые числа!")
+#
+# print(*sorted(numbers_list), sep='\n')
+
+"""
+Упражнение 115 Список собственных делителей
+"""
+# def all_divisions(num):
+#     divisions_list = [1]
+#     for i in range(2, num):
+#         if num % i == 0:
+#             divisions_list.append(i)
+#     return divisions_list
+#
+# while True:
+#     try:
+#         print(all_divisions(int(input("Делители какого числа узнать? "))))
+#         break
+#     except ValueError:
+#         print("Принимается только целое число!")
+
+"""
+Упражнение 116 Совершенные числа
+"""
+# def all_perfect_numbers():
+#     perfect_numbers = []
+#     for i in range(1, 1001):
+#         number = perfect_number(i)
+#         if number:
+#             perfect_numbers.append(i)
+#     return perfect_numbers
+#
+# def perfect_number(num):
+#     divisions_list = [1]
+#     for i in range(2, num):
+#         if num % i == 0:
+#             divisions_list.append(i)
+#     if sum(divisions_list) == num:
+#         return True
+#     return False
+#
+# print(all_perfect_numbers())
+# while True:
+#     try:
+#         print(perfect_number(int(input("Какое число проверить на совершенство? "))))
+#         break
+#     except ValueError:
+#         print("Принимается только целое число!")
+
+"""
+Упражнение 117 Только слова
+"""
+
+# def clear_words(str_):
+#     for i in [',', '.', '!', '?', ';', ':', '-']:
+#         str_ = str_.replace(i, '')
+#     return str_.split()
+#
+# if __name__ == '__main__':
+#     print(clear_words(input("Str ")))
+
+"""
+Упражнение 118 Словесные палиндромы
+"""
+
+# def is_palindrom(str_: str) -> bool:
+#     for i in ['\n', ',', '.', '!', '?', ';', ':', '-']:
+#         str_ = str_.replace(i, '')
+#     if str_.lower() == " ".join([i for i in str_.lower().split()[::-1]]):
+#         return True
+#     return False
+#
+#
+# print(is_palindrom("""Information graduate seeks graduate school information"""))
+
+"""
+Упражнение 119 Ниже и выше среднего
+"""
+
+# def print_lists(list_: list):
+#     avg = round(sum(list_)/len(list_), 2)
+#     under_avg = []
+#     over_avg = []
+#     for i in list_:
+#         if i <= avg:
+#             under_avg.append(i)
+#         else:
+#             over_avg.append(i)
+#     return f"Avg: {avg}\nUnder Avg: {under_avg}\nOver Avg: {over_avg}"
+#
+# numbers_list = []
+# while True:
+#     try:
+#         number = input("Input number: ")
+#         if not number:
+#             print(print_lists(numbers_list))
+#             break
+#         numbers_list.append(int(number))
+#     except ValueError:
+#         print("Принимаются только целые числа!")
+
+"""
+Упражнение 120 Форматирование списка
+"""
+
+# def print_format_str(list_: list):
+#     format_str = ", ".join(list_)
+#     format_str = format_str[::-1].replace(',', 'и ', 1)
+#     return format_str[::-1]
+#
+#
+# def input_list():
+#     strs_list = []
+#     while True:
+#         str_ = input("Str ")
+#         if not str_:
+#             break
+#         strs_list.append(str_)
+#     return print_format_str(strs_list)
+#
+# print(input_list())
+
+"""
+Упражнение 121. Случайные лотерейные номера
+"""
+
+# def random_list():
+#     win_ticket = random.sample(range(1, 50), 6)
+#     my_ticket = random.sample(range(1, 50), 6)
+#     return f"Win ticket: {win_ticket}\nYour ticket: {my_ticket}\n" \
+#            f"Matched: {len(set(win_ticket).intersection(my_ticket))} numbers"
+#
+#
+# print(random_list())
+
+"""
+Упражнение 122. "Поросячья латынь"
+"""
+
+# def to_pig_text():
+#     str_ = input("Input str: ")
+#     str_list = str_.split()
+#     check_str = ''
+#     vowels = ['a', 'e', 'i', 'o', 'u']
+#     consonants = list(sorted({chr(i) for i in range(97, 123)}.difference(vowels)))
+#     for i, j in enumerate(str_list):
+#         for k in j:
+#             if k in vowels and k == j[0]:
+#                 str_list[i] = j + 'way'
+#                 break
+#             elif k in consonants:
+#                 check_str += k
+#             elif k in vowels:
+#                 str_list[i] = j[len(check_str):] + check_str + 'ay'
+#                 check_str = ''
+#                 break
+#     return " ".join(str_list)
+#
+# print(to_pig_text())
+
+"""
+Упражнение 123. "Поросячья латынь" (продолжение)
+"""
+
+# def to_pig_text():
+#     str_ = input("Input str: ")
+#     str_list = str_.lower().split()
+#     p = [',', '.', '!', '?', ';', ':', '-']
+#     for i, j in enumerate(str_list):
+#         for k in p:
+#             if k in j and len(j) > 2:
+#                 str_list[i] = j[:-1]
+#                 str_list.insert(i+1, f"{k} ")
+#                 break
+#     check_str = ''
+#     vowels = ['a', 'e', 'i', 'o', 'u']
+#     consonants = list(sorted({chr(i) for i in range(97, 123)}.difference(vowels)))
+#     for i, j in enumerate(str_list):
+#         for k in j:
+#             if k in vowels and k == j[0]:
+#                 str_list[i] = j + 'way'
+#                 break
+#             elif k in consonants:
+#                 check_str += k
+#             elif k in vowels:
+#                 str_list[i] = j[len(check_str):] + check_str + 'ay'
+#                 check_str = ''
+#                 break
+#     return "".join(str_list).capitalize()
+#
+# print(to_pig_text())
+
+"""
+Упражнение 125. Тасуем колоду карт
+"""
+
+# def snuffle(deck: list):
+#     for key in range(2):
+#         for i in range(random.randint(5, 10)):
+#             first = random.randint(0, len(deck) - 1)
+#             deleted = deck[first:random.randint(first, len(deck) - 1)]
+#             deck = list(set(deck).difference(deleted))
+#             deck.insert(random.randint(0, len(deck) - 1), deleted)
+#             count = 0
+#             del_index = deck.index(deleted)
+#             deck.pop(del_index)
+#             for j in deleted:
+#                 deck.insert(del_index + count, j)
+#                 count += 1
+#         for i in range(random.randint(10, 60)):
+#             deck.insert(random.randint(0, len(deck) - 1), deck.pop(random.randint(0, len(deck) - 1)))
+#     return deck
+#
+#
+# def create_deck():
+#     deck = []
+#     for i in [str(i) for i in range(2, 10)] + ['T', 'J', 'Q', 'K', 'A']:
+#         for j in ['s', 'h', 'd', 'c']:
+#             deck.append(f"{i}{j}")
+#     return snuffle(deck)
+
+# print(create_deck())
+
+"""
+Упражнение 126. Раздача карманных карт
+"""
+
+# class Player:
+#
+#     def __init__(self):
+#         self.__player_cards = []
+#
+#     def add_card(self, value):
+#         self.__player_cards.append(value)
+#
+#     @property
+#     def get_cards(self):
+#         return self.__player_cards
+#
+#
+# def deal(players: int, card_value: int, deck: list):
+#     new_deck = deck.copy()
+#     players_list = []
+#     for i in range(players):
+#         player = Player()
+#         players_list.append(player)
+#     for i in range(card_value):
+#         for j in players_list:
+#             j.add_card(new_deck.pop(0))
+#     for i, j in enumerate(players_list):
+#         print(f"№{i + 1} player's cards: {j.get_cards}")
+#
+#
+# deal(3, 6, create_deck())  # create_deck из 125 задачи
+
+"""
+Упражнение 127. Список уже отсортирован?
+"""
+
+# def is_sorted(list_: list) -> bool:
+#     if list_ == sorted(list_):
+#         return True
+#     return False
+#
+# print(is_sorted([1, 2, -1, 4]))
+
+"""
+Упражнение 128. Подсчитать элементы в списке
+"""
+
+# def count_range(list_: list, min_: int, max_: int) -> int:
+#     count = 0
+#     for i in list_:
+#         if max_ > i >= min_:
+#             count += 1
+#     return count
+#
+#
+# print(count_range([1, 2, 3, 4, 0.3, 123, 4345, 435, -34, 342, 0.12], 1, 200))
+
+"""
+Упражнение 129. Разбиение строки на лексемы
+"""
+
+
+
+"""
+Упражнение 138. Текстовые сообщения
+"""
+
+# phone_symbols = {1: '.,?!:', 2: 'ABC', 3: 'DEF', 4: 'GHI', 5: 'JKL', 6: 'MNO', 7: 'PQRS', 8: 'TUV', 9: 'WXYZ', 0: ' '}
+#
+# def need_press_buttons(text: str, dictionary: dict) -> str:
+#     text = text.upper()
+#     message_str = ''
+#     for i in text:
+#         for j in phone_symbols.keys():
+#             if i in phone_symbols[j]:
+#                 message_str = message_str + str(j)*(phone_symbols[j].index(i) + 1)
+#     return message_str
+#
+#
+# print(need_press_buttons('Hello, world!', phone_symbols))
+
+"""
+Упражнение 142. Уникальные символы
+"""
+
+# def unique_symbols(str_: str) -> str:
+#     return f"В строке '{str_}', {len(set(str_))} уникальных символов"
+#
+# print(unique_symbols('Hello world!'))
+
+"""
+Упражнение 146. Карточка лото
+"""
+
+# def lotto_ticket():
+#     win_word = ['B', 'I', 'N', 'G', 'O']
+#     ran_numbers = [random.randint(1, 90) for number in range(5)]
+#     return print_ticket(dict(zip(win_word, ran_numbers)))
+#
+#
+# def print_ticket(ticket: dict):
+#     for i in ticket.keys():
+#         print(f'|{i:>2s}', end='')
+#     print('|')
+#     for i in ticket.values():
+#         print(f'|{str(i):>2s}', end='')
+#     print('|')
+#
+# lotto_ticket()
+
+"""
+Упражнение 173. Сумма значений
+"""
+
+# def rec_sum_numbers():
+#     if not (number := input()):
+#         return 0
+#     else:
+#         return rec_sum_numbers() + int(number)
+#
+# print(rec_sum_numbers())
+
+
+"""
+*****
+"""
+# def moving_rings(rings: int):
+#     A = [i for i in range(1, rings + 1)][::-1]
+#     B = []
+#     C = []
+#     count = 0
+#     while True:
+#         if not A and not B:
+#             break
+#         print(A, B, C)
+#         time.sleep(1)
+#         count += 1
+#         if A:
+#             if not C:
+#                 C.append(A.pop(-1))
+#             elif not B and len(A) != 1:
+#                 B.append(A.pop(-1))
+#             elif not B and len(A) == 1 and A[-1] < C[-1]:
+#                 C.append(A.pop(-1))
+#             elif not B:
+#                 B.append(C.pop(-1))
+#             elif B[-1] > C[-1]:
+#                 B.append(C.pop(-1))
+#             elif B[-1] < C[-1]:
+#                 C.append(B.pop(-1))
+#         else:
+#             if len(B) > 1:
+#                 A.append(B.pop(-1))
+#             else:
+#                 C.append(B.pop(-1))
+#     return A, B, C, count
+#
+#
+# print(moving_rings(3))
 

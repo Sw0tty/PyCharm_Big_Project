@@ -1,6 +1,110 @@
 import datetime
 
 
+class Employee:
+
+    def __init__(self, name, id_):
+        self.__name = name
+        self.__id_ = id_
+
+
+class ProductionWorker(Employee):
+
+    def __init__(self, name, id_, number, rate):
+        super().__init__(name, id_)
+        self.__number = number
+        self.__rate = rate
+
+
+
+class Beverage:
+
+    def __init__(self, bev_name):
+        self.bev_name = bev_name
+
+
+class Cola(Beverage):
+
+    def __init__(self):
+        super().__init__('coca-cola')
+
+
+cola = Cola()
+print(cola.bev_name)
+
+
+class Book:
+    def __init__(self, book_name, author, publisher):
+        self.__book_name = book_name
+        self.__author = author
+        self.__publisher = publisher
+
+    def get_book_name(self):
+        return self.__book_name
+
+    def get_author(self):
+        return self.__author
+
+    def get_publisher(self):
+        return self.__publisher
+
+    def set_book_name(self, new_book_name):
+        self.__book_name = new_book_name
+
+    def set_author(self, new_author):
+        self.__author = new_author
+
+    def set_publisher(self, new_publisher):
+        self.__publisher = new_publisher
+
+    def __str__(self):
+        return f"Название книги: {self.__book_name}\nАвтор книги: {self.__author}\nПублицист: {self.__publisher}"
+
+
+class Animals:
+    def __init__(self, name):
+        self.name = name
+
+    def say(self):
+        print(self.name + " хочет что-то сказать")
+
+    def swim(self):
+        print(self.name + " подходит к воде")
+
+
+class Cat(Animals):
+    def say(self):
+        super(Cat, self).say()  # Вызывает изначальную функию родителя от своего имени
+        print(self.name + " говорит Мяу")
+
+    def swim(self):
+        super(Cat, self).swim()  # Вызывает изначальную функию родителя от своего имени
+        print(self.name + " боится воды")
+
+
+class Dog(Animals):
+    def say(self):
+        super(Dog, self).say()
+        print(self.name + " говорит Гав-Гав")
+
+
+class CatDog(Cat, Dog):
+    swim = Dog.swim
+
+    def say(self):
+        super(CatDog, self).say()
+
+
+# cat = Cat('Кошка')
+# cat.say()
+# cat.swim()
+# dog = Dog('Собака')
+# dog.say()
+# dog.swim()
+cat_dog = CatDog('КотоПес')
+cat_dog.say()
+print(CatDog.mro())
+
 class Animal:
     def __init__(self, color: str) -> None:  # color: str - всего лишь подсказка для нужного типа данных
         self.color: str = color
@@ -40,6 +144,7 @@ print(a.roar_test_2(type_="Car"))  # Тест полиморфизма мето�
 print("\n")
 p = [1, 2, 3, 4]
 print(p.index(3))
+
 
 class ParentClass:
 
@@ -100,7 +205,7 @@ print(jane.human_age)
 print(jane.happiness)
 
 
-class Squre:
+class Square:
     def __init__(self, side):
         self.side = side
 
@@ -108,7 +213,7 @@ class Squre:
 class SquareFactory:
     @staticmethod
     def side(side):
-        return Squre(side)
+        return Square(side)
 
 
 squre_side = SquareFactory.side(5)
@@ -122,8 +227,6 @@ class StaticClass:
 
 
 StaticClass.bar()
-
-
 
 
 class Lime:

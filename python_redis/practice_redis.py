@@ -4,9 +4,9 @@ import time
 
 
 redis_connect = redis.Redis(
-    host='redis-10490.c239.us-east-1-2.ec2.cloud.redislabs.com',
-    port=10490,
-    password='TbOwJbhFj2nALSdDySmPlC73s1ZtzEGy'
+    host='',
+    port=,
+    password=''
 )
 
 command_dict = {'add': 'Добавить телефон и его владельца в БД',
@@ -90,16 +90,6 @@ while True:
             redis_connect.set('numbers_dict', json.dumps(delete_number))
         except TypeError:
             print("Телефон не найден")
-
-
-
-
-
-
-
-
-
-
 
     elif command == 'delete_all':
         confirmation = input("Вы ТОЧНО хотите удалить всю книгу, без способа восстановления? Y - да, N - нет ")

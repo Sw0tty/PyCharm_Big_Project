@@ -58,18 +58,6 @@ while True:
         except TypeError:
             print("Телефонной книги не существует")
 
-
-
-
-
-
-
-
-
-
-
-
-
     elif command == 'delete_number':
         while True:
             number = input("Какой телефон удалить? ")

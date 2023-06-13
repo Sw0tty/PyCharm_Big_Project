@@ -2,9 +2,9 @@ import redis
 import json
 
 redis_connect = redis.Redis(
-    host='redis-10490.c239.us-east-1-2.ec2.cloud.redislabs.com',
-    port=10490,
-    password='TbOwJbhFj2nALSdDySmPlC73s1ZtzEGy'
+    host='',
+    port=,
+    password=''
 )
 
 # redis_connect.set('var1', json.dumps('values3'))

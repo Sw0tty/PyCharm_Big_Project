@@ -70,7 +70,6 @@ while True:
             continue
         number = "{}-({}{}{})-{}{}{}-{}{}-{}{}".format(*list("".join(number)))
 
-
         try:
             converted_numbers_dict = json.loads(redis_connect.get('numbers_dict'))
             delete_number = converted_numbers_dict
@@ -97,5 +96,3 @@ while True:
             time.sleep(1)
     elif command == 'close':
         break
-
-

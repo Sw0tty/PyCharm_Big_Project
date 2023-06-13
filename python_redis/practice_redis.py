@@ -4,9 +4,9 @@ import time
 
 
 redis_connect = redis.Redis(
-    host='',
-    port=,
-    password=''
+    host='redis-10490.c239.us-east-1-2.ec2.cloud.redislabs.com',
+    port=10490,
+    password='TbOwJbhFj2nALSdDySmPlC73s1ZtzEGy'
 )
 
 command_dict = {'add': 'Добавить телефон и его владельца в БД',
